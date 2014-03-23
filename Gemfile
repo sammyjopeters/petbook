@@ -9,6 +9,9 @@ gem 'pg'
 # authentication gem
 gem 'devise'
 
+# gem to access a country selector (was removed from rails 4)
+gem 'country_select'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -49,6 +52,8 @@ group :development, :test do
   # mocha for stubbing
   gem 'mocha'
 
+  # shoulda to simplify test code
+  gem 'shoulda'
 end
 
 # Use ActiveModel has_secure_password

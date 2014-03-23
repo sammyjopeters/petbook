@@ -3,14 +3,29 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <div><%= f.label :first_name %><br />
+  <%= f.text_field :first_name, :autofocus => true %></div>
+
+  <div><%= f.label :gender,"Gender:" %><br />
+  <%= f.label :gender,"Female:" %>
+  <%= f.radio_button(:gender, "F") %><br />
+  <%= f.label :gender,"Male:" %>
+  <%= f.radio_button(:gender, "M") %></div>
+
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.email_field :email %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
+ <div><%= f.label :country, "Which country are you from?" %> <br />
+      <%= f.country_select :country %>
+ </div>
+
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
+
+ <%= f.hidden_field(:member_since, Time.now) %>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

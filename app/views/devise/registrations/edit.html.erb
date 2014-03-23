@@ -6,9 +6,34 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
+  <div>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+
+  <div><%= f.label :gender,"Gender:" %><br />
+  <%= f.label :gender,"Female:" %>
+  <%= f.radio_button(:gender, "F") %><br />>
+  <%= f.label :gender,"Male:" %>
+  <%= f.radio_button(:gender, "M") %></div>
+
+  <div><%= f.label :country, "Which country are you from?" %> <br />
+       <%= f.country_select :country %>
+  </div>
+
+  <div>
+    <%= f.label :favourite_animal, "Your favourite animal (It doesn't have to be a pet)" %><br />
+    <%= f.text_field :favourite_animal %>
+  </div>
+
+  <div>
+    <%= f.label :favourite_animal, "Upload a new avatar..." %>
+    <%= f.text_field :favourite_animal %>
+  </div>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
