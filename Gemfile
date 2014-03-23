@@ -35,6 +35,22 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
+# rspec for testing
+group :development, :test do
+  gem 'rspec-rails'
+
+  # factorygirl to create complex test data
+  gem 'factory_girl'
+
+  # simplecov to check test coverage
+  gem 'simplecov'
+
+  # mocha for stubbing
+  gem 'mocha'
+
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
