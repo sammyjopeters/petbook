@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Petbook::Application.config.secret_key_base = '83330bea970e4c9afd5389ca58b1dce12fae23acccc4313dc3de329a9e641ba593d62c596370c04c7b1699004760b515807684dfce7c59621064414c31065ce2'
+Petbook::Application.config.secret_key_base = '7459cee0e5f089e8be9e076cb88bf129b8864124bd644be95be4ee2b7ca5710980e9c5079c6671604cbd255ebb5f2834902fa5e9a7740e8155b0ce1635ded850'
