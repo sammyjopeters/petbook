@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "pets/show" do
   before(:each) do
-    @pet = assign(:pet, stub_model(Pet))
+    @pet = assign(:pet, create(:pet))
   end
 
   it "renders attributes in <p>" do

@@ -41,9 +41,13 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @pet.user %>
+ <% if @pet.user.gender === "F" %>
+      <strong>My Mum:</strong>
+ <% else %>
+      <strong>My Dad:</strong>
+ <% end %>
+  <%= @pet.user.first_name %>
 </p>
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<%= link_to 'Back', user_pets_path(current_user) %>

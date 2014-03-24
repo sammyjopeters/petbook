@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "pets/index" do
   before(:each) do
-    assign(:pets, [
-      stub_model(Pet),
-      stub_model(Pet)
-    ])
+    assign(:pets, [create(:pet)])
   end
 
   it "renders a list of pets" do
