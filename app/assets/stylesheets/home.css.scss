@@ -1,0 +1,26 @@
+body{
+  background-color: #000;
+  color: #FFF;
+
+}
+
+.container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.content{
+  width: 960px;  /* Or whatever */
+  margin: auto;  /* Magic! */
+  padding: 15px;
+  background-color: #00F;
+  display: inline-block;
+}

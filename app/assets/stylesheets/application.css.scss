@@ -13,3 +13,17 @@
  */
 
 @import "bootstrap";
+
+
+.container{
+  width: 960px;
+  padding: 15px;
+  background-color: #009900;
+}
+
+@media(max-width: 650px){
+  .container{
+    width: 650px;
+    background-color: #F00;
+  }
+}
