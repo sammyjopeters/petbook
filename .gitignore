@@ -16,7 +16,7 @@
 /tmp
 
 # ignore all the .idea spam
-/.gitignore
+.idea/*
 
 #leave the coverage on the local
 /coverage
