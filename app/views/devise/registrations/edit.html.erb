@@ -22,7 +22,7 @@
   <%= f.radio_button(:gender, "M") %></div>
 
   <div class="form-group"><%= f.label :country, "Which country are you from?" %> <br />
-       <%= f.country_select :country, class:'form-control' %>
+    <%= f.country_select :country, ["Australia", "New Zealand", "United Kingdom", "United States of America" ] %>
   </div>
 
   <div class="form-group">
@@ -31,8 +31,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :favourite_animal, "Upload a new avatar..." %>
-    <%= f.text_field :favourite_animal, class:'form-control' %>
+    <%= f.label :picture, "Upload a new avatar..." %>
+    <%= f.text_field :picture, class:'form-control' %>
   </div>
 
   <div class="form-group"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
