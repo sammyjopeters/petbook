@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<% if user_signed_in? %>
+<div class="loginpanel">
+  <%= render partial: 'shared/loginbox' %>
+</div>
+<% end %>
+
 <div class="container home">
   <div class="content">
     <%= yield %>
