@@ -46,7 +46,7 @@
  <% else %>
       <strong>My Dad:</strong>
  <% end %>
-  <%= @pet.user.first_name %>
+  <%= link_to @pet.user.first_name, user_profile_path(@pet.user) %>
 </p>
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |

@@ -11,39 +11,39 @@
     </div>
   <% end %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :family %><br>
     <%= f.select(:family, options_for_select([['Dog', 'Dog'], ['Cat', 'Cat'], ['Bird', 'Bird'], ['Rat/Mouse', 'Rat/Mouse'], ['Guinea Pig', 'Guinea Pig'], ['Rabbit', 'Rabbit'], ['Fish', 'Fish'], ['Crab', 'Crab'], ['Horse', 'Horse'], ['Reptile', 'Reptile'], ['Amphibian', 'Amphibian'], ['Amphibian', 'Amphibian'], ['Exotic/ Unusual', 'Exotic']])) %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :species %><br>
-    <%= f.text_field :species %>
+    <%= f.text_field :species, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :picture %><br>
-    <%= f.text_area :picture %>
+    <%= f.text_area :picture, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :dob %><br>
-    <%= f.datetime_select :dob %>
+    <%= f.datetime_select :dob, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :favourite_toy %><br>
-    <%= f.text_field :favourite_toy %>
+    <%= f.text_field :favourite_toy, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :favourite_place %><br>
-    <%= f.text_field :favourite_place %>
+    <%= f.text_field :favourite_place, class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :bio %><br>
-    <%= f.text_area :bio %>
+    <%= f.text_area :bio, class:'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:'btn btn-primary' %>
   </div>
 <% end %>
