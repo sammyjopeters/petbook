@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323071009) do
+ActiveRecord::Schema.define(version: 20140325053220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20140323071009) do
     t.string   "name"
     t.string   "family"
     t.string   "species"
-    t.text     "picture"
     t.datetime "dob"
     t.string   "favourite_toy"
     t.string   "favourite_place"
@@ -28,6 +27,10 @@ ActiveRecord::Schema.define(version: 20140323071009) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "pets", ["user_id"], name: "index_pets_on_user_id", using: :btree
@@ -49,9 +52,12 @@ ActiveRecord::Schema.define(version: 20140323071009) do
     t.string   "country"
     t.string   "gender"
     t.string   "favourite_animal"
-    t.text     "picture"
     t.datetime "member_since"
     t.integer  "pets"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

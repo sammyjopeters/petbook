@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-  @users = User.all
+    @users = User.all
   end
 
   def profile
@@ -9,4 +9,7 @@ class UsersController < ApplicationController
   end
 
 
+  def user_params
+    params.require(:user).permit(:picture)
+  end
 end

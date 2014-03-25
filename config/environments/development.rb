@@ -16,6 +16,9 @@ Petbook::Application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  #filepath for the image converter that paperclip uses
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

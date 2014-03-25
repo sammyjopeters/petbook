@@ -20,6 +20,10 @@
     <div class="form-group"><%= f.label :password %><br />
       <%= f.password_field :password, class:'form-control'%></div>
 
+      <div class="form-group">
+      <%= f.label :picture, 'Upload a picture of you!' %><br />
+      <%= f.file_field :picture %></div>
+
     <div class="form-group"><%= f.label :country, "Which country are you from?" %> <br />
       <%= f.country_select :country, ["Australia", "New Zealand", "United Kingdom", "United States of America" ] %>
     </div>

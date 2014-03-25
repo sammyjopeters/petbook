@@ -24,6 +24,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+# paperclip for image upload, git repository set for latest version
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

@@ -32,8 +32,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :picture, "Upload a new avatar..." %>
-    <%= f.text_field :picture, class:'form-control' %>
+        <%= image_tag "#{current_user.picture}", width: 30, height: 30 %>
+        <%= f.label :picture, 'Upload a new picture:' %><br />
+        <%= f.file_field :picture %>
   </div>
 
   <div class="form-group"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
