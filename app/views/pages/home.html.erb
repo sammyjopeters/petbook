@@ -5,13 +5,14 @@
   <% if user_signed_in? %>
 
   <h4>Welcome back, <%= current_user.first_name %>!</h4>
-    <% current_user.pets.each do |pet| %>
-        <%= link_to pet_path(current_user) do %>
-            <div class="petlistItem">
-              <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
-            </div>
+
+    <div class="petlist">
+        <% current_user.pets.each do |pet| %>
+            <%= link_to pet_path(current_user) do %>
+                  <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
     <%= link_to 'News Feed', newsfeed_path(current_user), :class => "btn btn-primary" %>
 
 

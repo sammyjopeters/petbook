@@ -1,5 +1,4 @@
 
-<div class="content">
   <div class="left">
   <%= image_tag("#{@user.picture}", :class => 'm_avatar') %>
   </div>
@@ -18,14 +17,12 @@
 
   </div>
     <br /><br />
-  <div class="petarray">
+  <div class="petlist">
       <h2><%= @user.first_name %>'s Pets</h2>
       <% @user.pets.each do |pet| %>
+        <div class="petitem">
           <%= link_to (image_tag("#{pet.picture}", :class => 's_avatar')), pet_path(@user) %><br />
           <%= link_to "#{pet.name}", pet_path(@user), :class => 'avatar_label' %>
+        </div>
       <% end %>
-  </div>
-
-
-
-</div>
+  </div><br />

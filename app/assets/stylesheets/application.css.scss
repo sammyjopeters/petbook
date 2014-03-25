@@ -102,6 +102,7 @@ h2{
 
 .content{
   padding: 40px;
+  margin-bottom: 80px;
 }
 
 .formwrapper{
@@ -214,36 +215,14 @@ h2{
 
 /*********** ============= Lists of pets ===================== ************/
 
-.petlistItem {
-  position:relative;
-  display: table;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
+
+.petlist {
+  clear: both;
+  padding: 15px;
 }
 
-.petlistItem img {
-  width:100%;
-  vertical-align:top;
-  }
-
-.petlistItem:after
-{
-  content:'View me';
-  color:#fff;
-  position:absolute;
-  width:100%; height:100%;
-  top:0; left:0;
-  background:rgba(0,0,0,0.6);
-  opacity:0;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-
-}
-
-.petlistItem:hover:after {
-  opacity:1;
+.petitem {
+  float:left;
+  padding: 10px;
+  text-align: center;
 }
