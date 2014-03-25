@@ -5,7 +5,16 @@
   <% if user_signed_in? %>
 
   <h4>Welcome back, <%= current_user.first_name %>!</h4>
-    <%= link_to 'Make a new pet', new_user_pet_path(current_user) %>
+    <% current_user.pets.each do |pet| %>
+        <%= link_to pet_path(current_user) do %>
+            <div class="petlistItem">
+              <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+            </div>
+        <% end %>
+    <% end %>
+    <%= link_to 'News Feed', newsfeed_path(current_user), :class => "btn btn-primary" %>
+
+
   <% else %>
       <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>

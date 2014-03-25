@@ -25,7 +25,17 @@ body{
 }
 
 footer{
-  bottom: 0px
+  bottom: 0px;
+  padding: 5px 10px;
+}
+
+table {
+  color: #000;
+}
+
+td {
+  text-align:center;
+  vertical-align:middle;
 }
 
 /*********** ============= Text Styles ===================== ************/
@@ -42,6 +52,17 @@ h2{
   color: #BFC5C7;
 }
 
+/*********** ============= Positioning ===================== ************/
+.left{
+  float: left;
+  padding-right: 5%;
+  padding-bottom: 3%
+}
+
+.right{
+  float: right ;
+  padding-left: 5%;
+}
 
 /*********** ============= Wrappers and Backgrounds ===================== ************/
 
@@ -60,13 +81,18 @@ h2{
 .container{
   width: 960px;
   padding: 0px;
-  margin-top: 100px;
+  margin-top: 85px;
   background-color: #1D2F4E;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
 
+.announce{
+  width: 960px;
+  margin: 0 auto;
+  padding-top: 15px;
+}
 
 @media(max-width: 650px){
   .container{
@@ -75,7 +101,12 @@ h2{
 }
 
 .content{
-  padding: 25px;
+  padding: 5px 5px;
+}
+
+.formwrapper{
+  width: 65%;
+  padding: 20px;
 }
 
 
@@ -115,6 +146,9 @@ h2{
 
 /*********** ============= Avatar Sizes ===================== ************/
 
+.avatar_label{
+}
+
 .xs_avatar{
   clear: both;
   width: 60px;
@@ -123,6 +157,93 @@ h2{
   -moz-border-radius: 50%;
   border-radius: 50%;
   padding: 3px;
+}
+
+.s_avatar{
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 3px;
+}
 
 
+.m_avatar{
+  width: 200px;
+  height: 200px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+
+.l_avatar{
+  width: 350px;
+  height: 350px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+
+/*********** ============= Profile styles ===================== ************/
+
+.profiletext{
+  padding-left: 15px;
+  width: 550px;
+}
+
+.impinfo{
+  float: right;
+  color: #000;
+  width: 300px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+
+.impinfo p{
+  color: #000;
+}
+
+.impinfo strong{
+  color: #1D2F4E;
+}
+
+/*********** ============= Lists of pets ===================== ************/
+
+.petlistItem {
+  position:relative;
+  display: table;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.petlistItem img {
+  width:100%;
+  vertical-align:top;
+  }
+
+.petlistItem:after
+{
+  content:'View me';
+  color:#fff;
+  position:absolute;
+  width:100%; height:100%;
+  top:0; left:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+}
+
+.petlistItem:hover:after {
+  opacity:1;
 }

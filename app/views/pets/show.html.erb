@@ -1,53 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+  <div class="left">
+    <%= image_tag("#{@pet.picture}", :class => 'm_avatar') %>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
+  <div class="impinfo panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Get to know me</h3>
+    </div>
+    <div class="panel-body">
+        <p>
+          <% if @pet.user.gender === "F" %>
+              <strong>My Mum:</strong>
+          <% else %>
+              <strong>My Dad:</strong>
+          <% end %>
+          <%= link_to @pet.user.first_name, user_profile_path(@pet.user) %>
+        </p>
+        <p><strong>My favourite toy: </strong><%= @pet.favourite_toy %></p>
+        <p><strong>I'm always excited to be at: </strong><%= @pet.favourite_place %></p>
+    </div>
+  </div>
 
-<p>
-  <strong>Family:</strong>
-  <%= @pet.family %>
-</p>
 
-<p>
-  <strong>Species:</strong>
-  <%= @pet.species %>
-</p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= @pet.picture %>
-</p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @pet.dob %>
-</p>
+  <div class="profiletext">
+    <h1><%= @pet.name %></h1><br />
+    <h4><%= @pet.species %> <%= @pet.family%></h4>
+    <h5>I'm <%= @pet.age %> years old!</h5>
 
-<p>
-  <strong>Favourite toy:</strong>
-  <%= @pet.favourite_toy %>
-</p>
+    <p><strong>A Little Bit About me...</strong><br />
+    <%= @pet.bio %></p>
+  </div>
 
-<p>
-  <strong>Favourite place:</strong>
-  <%= @pet.favourite_place %>
-</p>
+  <% if current_user === @pet.user %>
+  <%= link_to 'Edit profile', edit_pet_path(@pet) %>
+  <%= link_to 'Back to my pets', user_pets_path(current_user) %>
+  <% end %>
 
-<p>
-  <strong>Bio:</strong>
-  <%= @pet.bio %>
-</p>
 
-<p>
- <% if @pet.user.gender === "F" %>
-      <strong>My Mum:</strong>
- <% else %>
-      <strong>My Dad:</strong>
- <% end %>
-  <%= link_to @pet.user.first_name, user_profile_path(@pet.user) %>
-</p>
-
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', user_pets_path(current_user) %>
+</div>

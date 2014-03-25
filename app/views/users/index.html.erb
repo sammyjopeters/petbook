@@ -1,3 +1,14 @@
-<% @users.each do |user| %>
-    <%= link_to user.first_name, user_profile_path(user) %>
-<% end %>
+<h2>Petbook Members</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= link_to (image_tag "#{user.picture}", :class => "xs_avatar"), user_profile_path(user) %>
+              </td>
+              <td><%= user.first_name %> from <%= user.country %></td>
+              <td><%= link_to 'View Profile', user_profile_path(user) %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>

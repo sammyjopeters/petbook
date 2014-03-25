@@ -1,16 +1,31 @@
-<h1><%= @user.first_name %></h1>
-<p><% if @user.gender === "M" %>
-    Hi, I'm a guy
-    <% else %>
-    Hi I'm a girl
+
+<div class="content">
+  <div class="left">
+  <%= image_tag("#{@user.picture}", :class => 'm_avatar') %>
+  </div>
+
+  <div class="profiletext">
+    <h1><%= @user.first_name %></h1><br />
+    <h4>Member since <%= @user.member_since.strftime("%B %Y") %> </h4>
+    <p><% if @user.gender === "M" %>
+          Male
+      <% else %>
+          Female
       <% end %>
+    from <%= @user.country %> </p>
 
-  My pets are: <br />
-  <% @user.pets.each do |pet| %>
-    <%= link_to pet.name, pet_path(@user) %>
-  <% end %>
+    <p><strong>Favourite Animal:</strong> <%= @user.favourite_animal %></p>
+
+  </div>
+    <br /><br />
+  <div class="petarray">
+      <h2><%= @user.first_name %>'s Pets</h2>
+      <% @user.pets.each do |pet| %>
+          <%= link_to (image_tag("#{pet.picture}", :class => 's_avatar')), pet_path(@user) %><br />
+          <%= link_to "#{pet.name}", pet_path(@user), :class => 'avatar_label' %>
+      <% end %>
+  </div>
 
 
-</p>
 
-<p>I've been a member since <%= @user.member_since %> </p>
+</div>

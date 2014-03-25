@@ -1,0 +1,5 @@
+          <%= link_to pet_path(current_user) do %>
+            <div class="petlistItem">
+              <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+            </div>
+            <% end %>

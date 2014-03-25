@@ -1,45 +1,26 @@
-<h1>Listing pets</h1>
+<div class="content">
+<h2>All Pets on Petbook</h2>
+  <div class="table-responsive">
+      <table class="table table-striped">
+        <% @pets.each do |pet| %>
+            <tr>
+              <td>
+                <%= link_to (image_tag "#{pet.picture}", :class => "xs_avatar"), pet_path(pet) %>
+              </td>
+             <td><%= pet.name %></td>
+             <td><%= pet.family %></td>
+              <td><%= link_to 'View Profile', pet %></td>
+              <% if current_user === pet.user %>
+              <td><%= link_to 'Edit', edit_pet_path(pet) %> | <%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tr>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Family</th>
-      <th>Species</th>
-      <th>Picture</th>
-      <th>Dob</th>
-      <th>Favourite toy</th>
-      <th>Favourite place</th>
-      <th>Bio</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+        <% end %>
+      </table>
+  </div>
+</div>
 
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= pet.name %></td>
-        <td><%= pet.family %></td>
-        <td><%= pet.species %></td>
-        <td><%= pet.picture %></td>
-        <td><%= pet.dob %></td>
-        <td><%= pet.favourite_toy %></td>
-        <td><%= pet.favourite_place %></td>
-        <td><%= pet.bio %></td>
-        <td><%= pet.user.first_name %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <% if user_signed_in? %>
-<%= link_to 'New Pet', new_user_pet_path(current_user) %>
+<%= link_to 'New Pet', new_user_pet_path(current_user), :class => "btn btn-sm btn-primary" %>
 <% end %>
