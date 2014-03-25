@@ -6,16 +6,14 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="splash">
 
-<% if user_signed_in? %>
 <div class="loginpanel">
   <%= render partial: 'shared/loginbox' %>
 </div>
-<% end %>
 
-<div class="container home">
-  <div class="content">
+<div class="home">
+  <div id="homeBox">
     <%= yield %>
   </div>
 

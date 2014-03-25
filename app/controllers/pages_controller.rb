@@ -5,5 +5,9 @@ class PagesController < ApplicationController
     render :layout => 'home'
   end
 
+  def newsfeed
+    @user = User.find(params[:user])
+  end
+
 
 end

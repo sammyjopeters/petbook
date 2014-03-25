@@ -1,10 +1,27 @@
+.splash{
+  background: url(image_path("home_bg1.jpg"));
+  background-size: cover;
+  background-color: #000;
+}
 
 .home {
   width: 50%;
-  margin: 20% auto;
+  margin: 15% auto;
   text-align: center;
-  background-color: grey;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
+
+#homeBox{
+  padding: 20px 10px;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+
 
 @media (max-width: 650px){
   .home{

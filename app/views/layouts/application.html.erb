@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Petbook</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class="loginpanel">
-    <%= render partial: 'shared/loginbox' %>
-</div>
+    <head>
+      <title>Petbook</title>
+      <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+      <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+      <%= csrf_meta_tags %>
+    </head>
+    <body>
+            <div id="transitionbg-top">
 
-<div class="container">
-  <header class="header">
-    <%= render partial: 'shared/nav' unless devise_controller? && resource_name == :user && action_name == 'new'%>
-  </header>
+                <div id="transitionbg">
 
-  <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-  <% end %>
+                    <div class="loginpanel">
+                        <%= render partial: 'shared/loginbox' %>
+                    </div>
 
-  <div class="content">
-    <%= yield %>
-  </div>
+                      <% if notice %>
+                          <p class="alert alert-notice"><%= notice %></p>
+                      <% end %>
+                      <% if alert %>
+                          <p class="alert alert-error"><%= alert %></p>
+                      <% end %>
 
-  <footer class="footer">
-    <%= render partial: 'shared/footer'%>
-  </footer>
+                    <div class="container">
+                      <header class="header">
+                        <%= render partial: 'shared/nav' unless devise_controller? && resource_name == :user && action_name == 'new'%>
+                      </header>
 
-</div>
+                      <div class="content">
+                        <%= yield %>
+                      </div>
 
-
-</body>
+                      <footer>
+                        <%= render partial: 'shared/footer'%>
+                      </footer>
+                    </div>
+                </div>
+            </div>
+    </body>
 </html>
