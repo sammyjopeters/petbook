@@ -20,3 +20,6 @@
 
 #leave the coverage on the local
 /coverage
+
+# ugh, macs. Leaving these everywhere!
+.DS_Store
