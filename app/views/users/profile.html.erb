@@ -1,6 +1,14 @@
 
   <div class="left">
-  <%= image_tag("#{@user.picture}", :class => 'm_avatar') %>
+  <%= image_tag("#{@user.picture}", :class => 'm_avatar') %><br />
+    <%= puts "Currenty your follow list is: #{current_user.following.inspect}" %>
+    <% if current_user.following && current_user.following.include?(@user.id)  %>
+       <em>You're following <%= @user.first_name %></em>
+    <% else %>
+        <%= form_tag follow_user_path(@user) do %>
+            <%= submit_tag "Follow #{@user.first_name}", :class => 'btn btn-warning' %>
+        <% end %>
+    <% end %>
   </div>
 
   <div class="profiletext">

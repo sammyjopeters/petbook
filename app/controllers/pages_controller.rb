@@ -10,14 +10,20 @@ class PagesController < ApplicationController
 
     #### Post form on page
     @post = Post.new(post_params)
-    @posts = Post.all
 
+    ## determine the posts you're going to read
+    followlist = @user.following || []
+    followlist = followlist.map {|x| User.find(x) }
+    puts "follow list should now be an array of users. Is it? #{followlist.inspect}"
+    @posts = []
+    followlist.each do |user|
+      userposts = user.posts.order(created_at: :desc).limit(10)
+      @posts += userposts
+    end
+    @posts.sort_by!{ |item| item.created_at }.reverse!
 
-    #the comments field doesn't work yet :(
-    #@comment = Comment.new(comment_params)
-    #@commentpost = Post.find(params[:id])
-    #@comments = @commentpost.comments.build
   end
+
 
   private
 

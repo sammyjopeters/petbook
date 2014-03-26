@@ -34,6 +34,7 @@
   <div class="form-group">
         <%= image_tag "#{current_user.picture}", width: 30, height: 30 %>
         <%= f.label :picture, 'Upload a new picture:' %><br />
+        <strong>Maximum File Size of 2MB.</strong>
         <%= f.file_field :picture %>
   </div>
 

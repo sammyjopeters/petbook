@@ -1,8 +1,9 @@
-class PagesController < ApplicationController
+class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new(post_params)
+    @comment = current_user.comments.create(comment_params)
 
+    redirect_to :back
   end
 
 
@@ -10,6 +11,6 @@ class PagesController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :content, :created_date, :post_id)
+    params.require(:comment).permit(:content, :post_id)
   end
 end

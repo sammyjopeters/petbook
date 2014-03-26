@@ -1,4 +1,3 @@
-<div class="content">
   <div class="left">
     <%= image_tag("#{@pet.picture}", :class => 'm_avatar') %>
   </div>
@@ -37,6 +36,3 @@
   <%= link_to 'Edit profile', edit_pet_path(@pet) %>
   <%= link_to 'Back to my pets', user_pets_path(current_user) %>
   <% end %>
-
-
-</div>

@@ -1,9 +1,16 @@
 Petbook::Application.routes.draw do
 
-  resources :posts
+  resources :posts do
+    member do
+      post :addlike
+    end
+  end
 
   devise_for :users
   resources :users, :only => [:index], :shallow => true do
+    member do
+      post :follow
+    end
     resources :pets
     resources :posts, :shallow => true do
     end

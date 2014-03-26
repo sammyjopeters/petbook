@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to :back, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -65,6 +65,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def addlike
+    post = Post.find(params[:id])
+    post.increment!(:likes, by = 1)
+    redirect_to newsfeed_path(current_user, :anchor => post.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -73,6 +79,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :content, :date_created, :comments_id)
+      params.require(:post).permit(:user_id, :content, :comments_id)
     end
 end

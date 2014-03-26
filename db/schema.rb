@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325101520) do
+ActiveRecord::Schema.define(version: 20140326004150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
-    t.datetime "created_date"
     t.integer  "post_id"
     t.text     "content"
     t.datetime "created_at"
@@ -50,10 +49,10 @@ ActiveRecord::Schema.define(version: 20140325101520) do
   create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.text     "content"
-    t.datetime "date_created"
     t.integer  "comments_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "likes"
   end
 
   add_index "posts", ["comments_id"], name: "index_posts_on_comments_id", using: :btree
@@ -82,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140325101520) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "following"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -8,17 +8,23 @@
   <h1>Newsfeed</h1>
 
 <% @posts.each do |post| %>
-    <div class='statusupdate'>
-      <h4><%= image_tag "#{post.user.picture}", :class => "xs_avatar" %> <%= post.user.first_name %></h4>
+    <div class='statusupdate' id="<%= post.id %>">
+      <h4><%= image_tag post.user.picture, :class => "xs_avatar" %> <%= post.user.first_name %></h4>
       <p><%= post.content %></p>
-      <small><%= post.date_created.strftime("%d %B at %H:%M") %></small>
+      <small><%= post.created_at.strftime("%d %B at %H:%M") %></small> | <%= post.likes %><span class='glyphicon glyphicon-heart'></span>
+      <%= form_tag addlike_post_path(post) do %>
+      <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+      <% end %>
     </div>
     <div class="comments">
       <% post.comments.each do |comment| %>
           <p><%= comment.content %></p>
-          <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_date.strftime("%d %B at %H:%M") %></small>
+          <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
           <br /><br />
       <% end %>
+    </div>
+    <div>
+    <%= render partial: 'shared/commentform', locals: {comment: @post.comments.new, post: post.id} %>
     </div>
 <% end %>
 
