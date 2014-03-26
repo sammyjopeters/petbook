@@ -1,7 +1,6 @@
 
   <div class="left">
   <%= image_tag("#{@user.picture}", :class => 'm_avatar') %><br />
-    <%= puts "Currenty your follow list is: #{current_user.following.inspect}" %>
     <% if current_user.following && current_user.following.include?(@user.id)  %>
        <em>You're following <%= @user.first_name %></em>
     <% else %>

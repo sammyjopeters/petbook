@@ -1,5 +1,7 @@
 Petbook::Application.routes.draw do
 
+  resources :snapshots
+
   resources :posts do
     member do
       post :addlike

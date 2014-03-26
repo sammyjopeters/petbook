@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     currentuser.following = [] if currentuser.following.nil?
     currentuser.following << user.id
     currentuser.save
-    puts "New following list is #{currentuser.following}"
     redirect_to user_profile_path(user)
   end
 

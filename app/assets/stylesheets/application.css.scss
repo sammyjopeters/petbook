@@ -14,9 +14,12 @@
  *= require_self
  */
 @import "bootstrap";
-
+@import "compass";
 
 /*********** ============= Global Element Styles ===================== ************/
+html{
+  height: 100%
+}
 
 body{
   background-color: #000;
@@ -27,6 +30,7 @@ body{
 footer{
   bottom: 0px;
   padding: 5px 10px;
+  clear: both;
 }
 
 table {
@@ -103,6 +107,7 @@ h2{
 .content{
   padding: 40px;
   margin-bottom: 80px;
+
 }
 
 .formwrapper{
@@ -110,6 +115,16 @@ h2{
   padding: 20px;
 }
 
+.sidenav{
+  @include filter-gradient(rgba(195,217,255,1), rgba(125,185,232,0), vertical);
+  @include background-image(linear-gradient(top, rgba(195,217,255,1) 0%,rgba(174,207,248,1) 30%,rgba(151,197,240,1) 63%,rgba(125,185,232,0) 100%));
+  padding-bottom: 15%;
+  padding-top: 10px;
+  margin-left: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
 
 
 /*********** ============= LOGIN PANEL ===================== ************/

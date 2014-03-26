@@ -32,8 +32,13 @@
                       <header class="header">
                         <%= render partial: 'shared/nav' unless devise_controller? && resource_name == :user && action_name == 'new'%>
                       </header>
+                      <% content_class = "col-md-12" %>
+                      <% if user_signed_in? && params[:action] == 'newsfeed' %>
+                        <%= render partial: 'shared/usermenu' %>
+                        <% content_class = "col-md-9" %>
+                      <% end %>
 
-                      <div class="content">
+                      <div class="content <%= content_class %>">
                         <%= yield %>
                       </div>
 
@@ -41,7 +46,7 @@
                         <%= render partial: 'shared/footer'%>
                       </footer>
                     </div>
-                </div>
+                </div><!-- transition bg -->
             </div>
     </body>
 </html>

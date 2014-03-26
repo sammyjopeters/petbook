@@ -15,6 +15,9 @@ gem 'country_select'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# compass for some scss stuff.
+gem 'compass-rails'
+
 # bootstrap for default styping
 gem 'bootstrap-sass', '~> 3.1.1'
 
@@ -25,7 +28,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # paperclip for image upload, git repository set for latest version
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
