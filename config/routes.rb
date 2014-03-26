@@ -1,5 +1,6 @@
 Petbook::Application.routes.draw do
 
+  # I can't remember why this is here but I don't think I should remove it...??
   resources :snapshots
 
   resources :posts do
@@ -13,9 +14,9 @@ Petbook::Application.routes.draw do
     member do
       post :follow
     end
-    resources :pets
-    resources :posts, :shallow => true do
-    end
+    resources :pets, shallow: true
+    resources :photos, :controller => "snapshots"
+    resources :posts, shallow: true
   end
 
   resources :pets, :only => [:index, :create]

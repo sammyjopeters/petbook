@@ -4,17 +4,29 @@ class SnapshotsController < ApplicationController
   # GET /snapshots
   # GET /snapshots.json
   def index
+    #raise params.inspect
     @snapshots = Snapshot.all
+    @user = User.find(params[:user_id])
+
+    @snapshots = @user.snapshots
+    if @user == current_user
+      @title = "My Photos"
+    else
+      @title = "#{@user.first_name}'s Photos"
+    end
   end
 
   # GET /snapshots/1
   # GET /snapshots/1.json
   def show
+    # this allows the back button to send you back somewhere real without exploding
+    session[:last_page] = request.env['HTTP_REFERRER'] || newsfeed_path(current_user)
   end
 
   # GET /snapshots/new
   def new
     @snapshot = Snapshot.new
+    # generate a unique id for the upload
   end
 
   # GET /snapshots/1/edit
@@ -69,6 +81,6 @@ class SnapshotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def snapshot_params
-      params.require(:snapshot).permit(:user_id)
+      params.require(:snapshot).permit(:user_id, :image )
     end
 end

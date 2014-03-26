@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>User:</strong>
-  <%= @snapshot.user %>
+  <%= image_tag @snapshot.image.url(:medium)  %>
 </p>
 
+<% if current_user === @snapshot.user %>
 <%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
-<%= link_to 'Back', snapshots_path %>
+<% end %>
+
+<% if session[:last_page] %>
+<%= link_to 'Back', session[:last_page] %>
+<% end %>

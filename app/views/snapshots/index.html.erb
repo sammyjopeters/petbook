@@ -1,27 +1,17 @@
-<h1>Listing snapshots</h1>
+<h2><%= @title %></h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @snapshots.each do |snapshot| %>
-      <tr>
-        <td><%= snapshot.user %></td>
-        <td><%= link_to 'Show', snapshot %></td>
-        <td><%= link_to 'Edit', edit_snapshot_path(snapshot) %></td>
-        <td><%= link_to 'Destroy', snapshot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% if @user.snapshots.present? %>
+    <% @user.snapshots.each do |photo| %>
+          <div class="snapshotthumb">
+           <%= link_to snapshot_path(photo) do %>
+          <%= image_tag photo.image.url(:thumb) %>
+          <% end %>
+          </div><br /><br />
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Snapshot', new_snapshot_path %>
+      <% if @user == current_user %>
+          <%= link_to 'New Snapshot', new_snapshot_path(current_user), :class => "btn btn-default" %>
+      <% end %>
+<% else %>
+    <h3>You haven't got any photos yet.</h3>
+    <h4>Why not <%= link_to "upload one now?", new_snapshot_path(current_user) %></h4>
+<% end %>

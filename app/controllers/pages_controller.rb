@@ -11,16 +11,27 @@ class PagesController < ApplicationController
     #### Post form on page
     @post = Post.new(post_params)
 
-    ## determine the posts you're going to read
+    ## determine the posts and pics you're going to read
     followlist = @user.following || []
     followlist = followlist.map {|x| User.find(x) }
-    puts "follow list should now be an array of users. Is it? #{followlist.inspect}"
-    @posts = []
-    followlist.each do |user|
-      userposts = user.posts.order(created_at: :desc).limit(10)
-      @posts += userposts
+    @posts = @user.posts if @user.posts.present?
+    @snapshots = @user.snapshots if @user.snapshots.present?
+    if followlist.nil?
+      @everything = (@posts + @snapshots).sort_by(&:created_at).reverse!
+      render alert: "You're not following anybody at the moment!"
+    else
+      followlist.each do |user|
+        userposts = user.posts.order(created_at: :desc).limit(10) if user.posts
+        userphotos = user.snapshots.order(created_at: :desc).limit(10) if user.snapshots
+        @posts += userposts
+        @snapshots += userphotos
+      end
+      @everything = (@posts + @snapshots).sort_by(&:created_at).reverse!
+      puts "Gimme everyting: #{@everything.inspect}"
+      puts "Now gimme the class names of everything!"
+      @everything.each {|thing| puts thing.class.name}
     end
-    @posts.sort_by!{ |item| item.created_at }.reverse!
+
 
   end
 
