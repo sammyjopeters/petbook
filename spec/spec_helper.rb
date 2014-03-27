@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'simplecov'
-
+require 'paperclip/matchers'
 
 SimpleCov.start
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -33,6 +33,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
@@ -46,5 +47,8 @@ RSpec.configure do |config|
 
   # let us use FactoryGirl in our mocks!
   config.include FactoryGirl::Syntax::Methods
+
+  # adding paperclip helpers
+  config.include Paperclip::Shoulda::Matchers
 
 end

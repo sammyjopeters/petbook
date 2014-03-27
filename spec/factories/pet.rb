@@ -4,7 +4,6 @@ FactoryGirl.define do
     name 'fido'
     family 'dog'
     species 'labrador'
-    picture '../picture.jpg'
     dob Time.now
     favourite_toy 'rubber ball'
     favourite_place 'the local park!'
