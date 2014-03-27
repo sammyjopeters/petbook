@@ -9,24 +9,35 @@
       "/Users/Sammyjo/GeneralAssembly/projects/petbook/spec/support/factory_girl.rb": [
 
       ],
-      "/Users/Sammyjo/GeneralAssembly/projects/petbook/app/controllers/posts_controller.rb": [
+      "/Users/Sammyjo/GeneralAssembly/projects/petbook/app/controllers/snapshots_controller.rb": [
         1,
         1,
         null,
         null,
         null,
         1,
+        null,
+        1,
+        1,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
         null,
         null,
         null,
         null,
         1,
-        null,
-        null,
-        null,
         1,
-        1,
+        null,
         null,
         null,
         null,
@@ -57,12 +68,8 @@
         4,
         2,
         null,
-        2,
         0,
-        null,
-        4,
-        null,
-        2,
+        0,
         null,
         null,
         null,
@@ -75,12 +82,6 @@
         4,
         2,
         null,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
         null,
         null,
         1,
@@ -121,19 +122,15 @@
         null,
         null
       ],
-      "/Users/Sammyjo/GeneralAssembly/projects/petbook/app/models/post.rb": [
+      "/Users/Sammyjo/GeneralAssembly/projects/petbook/app/models/snapshot.rb": [
         1,
         1,
-        1,
-        null
-      ],
-      "/Users/Sammyjo/GeneralAssembly/projects/petbook/app/models/comment.rb": [
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1395890256
+    "timestamp": 1395896061
   }
 }

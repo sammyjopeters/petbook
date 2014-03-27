@@ -77,7 +77,6 @@ describe PetsController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested pet" do
-          pet = create(:pet)
           # Assuming there are no other pets in the database, this
           # specifies that the Pet created on the previous line
           # receives the :update_attributes message with whatever params are
@@ -87,13 +86,11 @@ describe PetsController do
         end
 
         it "assigns the requested pet as @pet" do
-          pet = create(:pet)
           put :update, {id: pet.id, user_id: user.id, pet: {name: 'rex'} }
           expect(assigns(:pet)).to eq(pet)
         end
 
         it "redirects to the pet" do
-          pet = create(:pet)
           put :update, {id: pet.id, user_id: user.id, pet: {name: 'rex'} }
           response.should redirect_to(pet)
         end
@@ -101,7 +98,6 @@ describe PetsController do
 
       describe "with invalid params" do
         it "assigns the pet as @pet" do
-          pet = create(:pet)
           # Trigger the behavior that occurs when invalid params are submitted
           Pet.any_instance.stub(:save).and_return(false)
           put :update, {id: pet.id, user_id: user.id, pet: { user_id: nil } }
@@ -109,7 +105,6 @@ describe PetsController do
         end
 
         it "re-renders the 'edit' template" do
-          pet = create(:pet)
           # Trigger the behavior that occurs when invalid params are submitted
           Pet.any_instance.stub(:update).and_return(false)
           put :update, {id: pet.id, user_id: user.id,  pet: { user_id: nil } }
@@ -120,14 +115,13 @@ describe PetsController do
 
     describe "DELETE destroy" do
       it "destroys the requested pet" do
-        pet = create(:pet)
+        byebyepet = create(:pet)
         expect {
-          delete :destroy, {id: pet.id, user_id: user.id}
+          delete :destroy, {id: byebyepet.id, user_id: user.id}
         }.to change(Pet, :count).by(-1)
       end
 
       it "redirects to the pets list" do
-        pet = create(:pet)
         delete :destroy, {id: pet.id, user_id: user.id}
         response.should redirect_to(pets_url)
       end
