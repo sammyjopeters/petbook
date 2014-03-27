@@ -10,13 +10,15 @@ Petbook::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  # tell paperclip to store images on Amazon Web Services!!
+#paper clip configuration for Amazon
   config.paperclip_defaults = {
       :storage => :s3,
+      :url => ':s3_domain_url',
+      :path => '/:class/:attachment/:id_partition/:style/:filename',
       :s3_credentials => {
-          :bucket => ENV['petbook'],
-          :access_key_id => ENV['AKIAJ4YL3BJPVYJ6ONFQ'],
-          :secret_access_key => ENV['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']
+          :bucket => ENV['AWS_BUCKET'],
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       }
   }
 
