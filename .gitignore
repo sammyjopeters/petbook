@@ -23,3 +23,6 @@
 
 # ugh, macs. Leaving these everywhere!
 .DS_Store
+
+# exclude the dev location for pics
+/public/system
