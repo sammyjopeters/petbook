@@ -95,6 +95,11 @@ describe PostsController do
         put :update,  {id: thepost.id, user_id: user.id, post: {content: 'blahablablah POST TEXT'} }
         response.should redirect_to "where_i_came_from"
       end
+
+      it "redirects if the params include newsfeed" do
+        put :update,  {id: thepost.id, user_id: user.id, post: {content: 'blahablablah POST TEXT', params: 'newsfeed'} }
+        expect(response).to render_template("newsfeed")
+      end
     end
 
     describe "with invalid params" do
