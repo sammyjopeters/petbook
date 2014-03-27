@@ -4,7 +4,7 @@
        <em>You're following <%= @user.first_name %></em>
     <% else %>
         <%= form_tag follow_user_path(@user) do %>
-            <%= submit_tag "Follow #{@user.first_name}", :class => 'btn btn-warning' %>
+            <%= submit_tag "Follow #{@user.first_name}", :class => 'btn btn-warning', :style => 'margin-left: 25%;' %>
         <% end %>
     <% end %>
   </div>
@@ -50,9 +50,10 @@
           <br /><br />x
       <% end %>
     </div>
-  </div>
-  <div>
-    <%= render partial: 'shared/postcommentform', locals: {comment: post.comments.new, post: post.id} %>
+    <div>
+      <%= render partial: 'shared/postcommentform', locals: {comment: post.comments.new, post: post} %>
+    </div>
+
   </div>
 
   <% end %>

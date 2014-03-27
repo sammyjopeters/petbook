@@ -3,7 +3,7 @@
   <% current_user.pets.each do |pet| %>
       <div class="petitem">
         <small><%= pet.name %></small><br />
-          <%= link_to pet_path(current_user) do %>
+          <%= link_to pet_path(pet) do %>
               <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
           <% end %><br />
           <%= link_to edit_pet_path(pet) do %>
@@ -72,31 +72,36 @@
             <%= link_to snapshot_path(thing) do %>
                 <%= image_tag thing.image.url(:thumb) %><br />
             <% end %>
-          </div>
-          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
 
-          <% if thing.tags.present? %>
-              <p><strong>With: </strong>
-                <% thing.tags.each do |tag| %>
-                    <% thepet = thing.user.pets.where(:name => tag.name).first %>
-                    <%= link_to pet_path(thepet.id) do %>
-                        <%= image_tag thepet.picture, width: 20, height: 20 %>
-                        <small><%= thepet.name %></small>
-                    <% end %>
-                <% end %>
-              </p>
-          <% end %>
-
-          <div class="comments">
-            <% thing.comments.each do |comment| %>
-                <p><%= comment.content %></p>
-                <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
-                <br /><br />
+            <% if thing.tags.present? %>
+                <p><strong>With: </strong>
+                  <% thing.tags.each do |tag| %>
+                      <% thepet = thing.user.pets.where(:name => tag.name).first %>
+                      <%= link_to pet_path(thepet.id) do %>
+                          <%= image_tag thepet.picture, width: 20, height: 20 %>
+                          <small><%= thepet.name %></small>
+                      <% end %>
+                  <% end %>
+                </p>
             <% end %>
           </div>
-        </div>
-        <div class="commentform">
-          <%= render partial: 'shared/snapshotcommentform', locals: {comment: thing.comments.new, snapshot: thing.id} %>
+
+          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <% if thing.comments.present? %>
+              <div class="comments">
+                <h4>Comments</h4>
+                <% thing.comments.each do |comment| %>
+                    <div class="singlecomment">
+                      <p><%= comment.content %></p>
+                      <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
+                      <br /><br />
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+          <div class="commentform">
+            <%= render partial: 'shared/snapshotcommentform', locals: {comment: thing.comments.new, snapshot: thing} %>
+          </div>
         </div>
     <% end %>
 <% end %>

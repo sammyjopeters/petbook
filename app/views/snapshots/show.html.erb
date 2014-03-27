@@ -18,11 +18,11 @@
       <% @snapshot.comments.each do |comment| %>
           <p><%= comment.content %></p>
           <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
-          <br /><br />x
+          <br /><br />
       <% end %>
     </div>
 <div class="commentform">
-  <%= render partial: 'shared/postcommentform', locals: {comment: @snapshot.comments.new, post: @snapshot.id} %>
+  <%= render partial: 'shared/snapshotcommentform', locals: {comment: @snapshot.comments.new, snapshot: @snapshot} %>
 </div>
 
 <div class="btn-group">
