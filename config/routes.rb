@@ -1,7 +1,12 @@
 Petbook::Application.routes.draw do
 
   # I can't remember why this is here but I don't think I should remove it...??
-  resources :snapshots
+  resources :snapshots do
+    member do
+      post :addlike
+      post :unlike
+    end
+  end
 
   resources :posts do
     member do

@@ -2,6 +2,18 @@
   <%= image_tag @snapshot.image.url(:medium)  %>
 </p>
 
+<h4>Comments</h4>
+<div class="comments">
+  <% @snapshot.comments.each do |comment| %>
+      <p><%= comment.content %></p>
+      <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
+      <br /><br />x
+  <% end %>
+</div>
+<div>
+  <%= render partial: 'shared/postcommentform', locals: {comment: @snapshot.comments.new, post: @snapshot.id} %>
+</div>
+
 <% if current_user === @snapshot.user %>
 <%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
 <% end %>

@@ -6,13 +6,17 @@
 
   <h4>Welcome back, <%= current_user.first_name %>!</h4>
 
-    <div class="petlist">
-        <% current_user.pets.each do |pet| %>
-            <%= link_to pet_path(current_user) do %>
-                  <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+    <% if current_user.has_pets? %>
+        <div class="petlist">
+            <% current_user.pets.each do |pet| %>
+                <%= link_to pet_path(current_user) do %>
+                      <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+                <% end %>
             <% end %>
-        <% end %>
-    </div>
+
+        </div>
+    <% end %>
+
     <%= link_to 'News Feed', newsfeed_path(current_user), :class => "btn btn-primary" %>
 
 

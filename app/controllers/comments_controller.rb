@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.create(comment_params)
-
     redirect_to :back
   end
 
@@ -11,6 +10,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :user_id, :snapshot_id)
   end
 end

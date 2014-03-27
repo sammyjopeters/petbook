@@ -1,5 +1,10 @@
 class Pet < ActiveRecord::Base
   belongs_to :user
+
+  #you can tag pets in photos and posts
+  acts_as_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_taggable_on :snapshots, :posts
+
   # pets have pictures that can be uploaded with paperclip
   has_attached_file :picture, :styles => { :medium => "450x450#", :thumb => "150x150#" }, :default_url => "defam.jpg"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/

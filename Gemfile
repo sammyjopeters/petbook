@@ -30,6 +30,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # paperclip for image upload, git repository set for latest version
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
+# amazon web services gem - which allows me to store paperclip content on the web;
+gem 'aws-sdk', '~> 1.5.7'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -46,6 +48,9 @@ gem 'jbuilder', '~> 1.2'
 # mostly used for testing but probably useful elsewhere
 gem 'database_cleaner'
 
+# acts as taggable to tag posts and snapshots..
+gem 'acts-as-taggable-on'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -58,9 +63,6 @@ group :development, :test do
 
   # factorygirl to create complex test data
   gem 'factory_girl_rails'
-
-  # amazon web services gem - which allows me to store paperclip content on the web;
-  gem 'aws-sdk', '~> 1.5.7'
 
   # simplecov to check test coverage
   gem 'simplecov'

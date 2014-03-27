@@ -7,37 +7,55 @@
   <h1>Newsfeed</h1>
 
 <% @everything.each do |thing| %>
-    <% puts "#{thing.class.name}" %>
     <!-- if what we're looking at is a post, give me the post HTML... -->
     <h4><%= image_tag thing.user.picture, :class => "xs_avatar" %> <%= thing.user.first_name %></h4>
     <% if thing.class.name === "Post" %>
         <div class='statusupdate' id="<%= thing.id %>">
 
-          <p><%= thing.content %></p>
-          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small> | <%= thing.likes %><span class='glyphicon glyphicon-heart'></span>
-          <%= form_tag addlike_post_path(thing) do %>
-          <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
-          <% end %>
-        </div>
-        <div class="comments">
-          <% thing.comments.each do |comment| %>
-              <p><%= comment.content %></p>
-              <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
-              <br /><br />
-          <% end %>
+          <p><%= thing.content %></p><br />
+          <% if thing.tags.present? %>
+              <p><strong>With: </strong>
+              <% thing.tags.each do |tag| %>
+                <% thepet = thing.user.pets.where(:name => tag.name).first %>
+                <%= link_to pet_path(thepet.id) do %>
+                    <%= image_tag thepet.picture, width: 20, height: 20 %>
+                    <small><%= thepet.name %></small>
+                <% end %>
+              <% end %>
+              </p>
+           <% end %>
+
+          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <div class="comments">
+            <% thing.comments.each do |comment| %>
+                <p><%= comment.content %></p>
+                <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
+                <br /><br />x
+            <% end %>
+          </div>
         </div>
         <div>
-        <%= render partial: 'shared/commentform', locals: {comment: @post.comments.new, post: thing.id} %>
+          <%= render partial: 'shared/postcommentform', locals: {comment: thing.comments.new, post: thing} %>
         </div>
 
     <% else %>
         <!-- otherwise, give me the HTML for images. (Caveat: if I ever introduce another content type it will probably break this! -->
-        <%= link_to snapshot_path(thing) do %>
-            <%= image_tag thing.image.url(:thumb) %>
-        <% end %>
+        <div class='statusupdate' id="pic<%= thing.id %>">
+            <%= link_to snapshot_path(thing) do %>
+                <%= image_tag thing.image.url(:thumb) %><br />
+            <% end %>
+          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <div class="comments">
+            <% thing.comments.each do |comment| %>
+                <p><%= comment.content %></p>
+                <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
+                <br /><br />
+            <% end %>
+          </div>
+          <div>
+            <%= render partial: 'shared/snapshotcommentform', locals: {comment: thing.comments.new, snapshot: thing.id} %>
+          </div>
+
+        </div>
     <% end %>
 <% end %>
-
-
-
-

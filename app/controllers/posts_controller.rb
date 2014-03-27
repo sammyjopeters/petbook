@@ -65,11 +65,19 @@ class PostsController < ApplicationController
     end
   end
 
-  def addlike
-    post = Post.find(params[:id])
-    post.increment!(:likes, by = 1)
-    redirect_to newsfeed_path(current_user, :anchor => post.id)
-  end
+  # like functionality not working :-(
+  #def addlike
+  #  post = Post.find(params[:id])
+  #  @like = post.likes.create(user_id: params[:user_id], post_id: post.id)
+  #  redirect_to :back
+  #end
+  #
+  #def unlike
+  #  post = Post.find(params[:id])
+  #  @like = post.likes.find(params[:user_id])
+  #  @like.destroy
+  #  redirect_to :back
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -79,6 +87,10 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :content, :comments_id)
+      params.require(:post).permit(:user_id, :content, :comments_id, :tag_list)
+    end
+
+    def like_params
+      params.require(:like).permit(:user_id, :post_id)
     end
 end

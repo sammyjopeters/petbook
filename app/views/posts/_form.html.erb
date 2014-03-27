@@ -17,11 +17,19 @@
     <%= f.label :content, "What did you do today?" %><br>
     <%= f.text_area :content, :class => 'form-control' %>
     </div>
-  <div class="field">
+      <% if current_user.has_pets? %>
+          <div class="form-group">
+            <%= f.label :tag_list, "Were any of your pets with you?" %>
 
-  </div>
+            <% current_user.pets.each do |pet| %>
+                <%= f.label :tag_list, pet.name %>
+                <%= f.check_box :tag_list, { :multiple => true }, :value => pet.name %>
+            <% end %>
+          </div>
+      <% end %>
   <div class="actions">
     <%= f.submit 'Post Update', :class => 'btn btn-warning' %>
   </div>
 <% end %>
 </div>
+

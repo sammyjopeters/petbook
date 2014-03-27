@@ -20,25 +20,18 @@ class PagesController < ApplicationController
     ## first, grab all the users you're following
     followlist = @user.following || []
     followlist = followlist.map {|x| User.find(x) }
-    puts "Hokay, so these are the people I'm following"
     followlist.each {|person| puts person.first_name}
 
     #then start by getting my stuff only first.
 
     if followlist.nil?
-      puts "***** I am not following anybody. Returning my own stuff."
       # if you aren't following anybody, just return your stuff.
       @everything = show_my_stuff(@user)
-      puts "this should show all my own stuff. #{@everything.inspect}"
       render alert: "You're not following anybody at the moment!"
       puts @everything.inspect
     else
-      puts "***** I have followers! I'm printing everything I've got."
       @everything = show_me_all_things(followlist)
     end
-    puts "This is what I'm gonna try and print in the view!!!!!!!! \n"
-    puts @everything.inspect
-    puts "\n"
 
   end
 
@@ -54,6 +47,10 @@ class PagesController < ApplicationController
     params.fetch(:comment, {}).permit(:user_id, :content, :created_date, :post_id)
   end
 
+  def like_params
+    params.fetch(:like, {}).permit(:user_id, :snapshot_id, :post_id)
+  end
+
   def show_my_stuff(user)
     @posts = user.posts if user.posts.present?
     @snapshots = user.snapshots if user.snapshots.present?
@@ -66,25 +63,15 @@ class PagesController < ApplicationController
       if user.posts.present?
         user_posts = user.posts.order(created_at: :desc).limit(10)
         @posts += user_posts
-        puts "showing you the posts I got for #{user.first_name}: \n #{@posts.inspect}"
-        puts "\n"
       else
       end
 
       #only do this if you've got snapshots
       if user.snapshots.present?
-        puts "got snapshots! printing."
         user_photos = user.snapshots.order(created_at: :desc).limit(10) if user.snapshots.present?
         @snapshots += user_photos
-        puts "showing you the snapshots I got for #{user.first_name}: \n #{@snapshots.inspect}"
-        puts "\n"
       else
-        puts "no snapshots. Boo!"
       end
-
-      puts "I'm going to chuck this back out to the controller: \n"
-      puts @everything.inspect
-      puts "\n"
       @everything = (@posts + @snapshots).sort_by(&:created_at).reverse!
     end
     @everything

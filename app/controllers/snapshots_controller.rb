@@ -72,6 +72,20 @@ class SnapshotsController < ApplicationController
     end
   end
 
+
+  def addlike
+    snapshot = Snapshot.find(params[:id])
+    @like = snapshot.likes.create(like_params)
+    redirect_to :back
+
+    #post.increment!(:likes, by = 1)
+    #redirect_to newsfeed_path(current_user, :anchor => snapshot.id)
+  end
+
+  def tag_list
+    self.tags.map(&:name).join(', ')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_snapshot
@@ -80,6 +94,6 @@ class SnapshotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def snapshot_params
-      params.require(:snapshot).permit(:user_id, :image )
+      params.require(:snapshot).permit(:user_id, :image, :comments_id, :tag_list)
     end
 end

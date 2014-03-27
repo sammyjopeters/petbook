@@ -15,4 +15,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+  def has_pets?
+    if self.pets.count >= 1
+      true
+    else
+      false
+    end
+  end
+
 end
