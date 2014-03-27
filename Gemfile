@@ -48,6 +48,7 @@ gem 'jbuilder', '~> 1.2'
 # mostly used for testing but probably useful elsewhere
 gem 'database_cleaner'
 
+
 # acts as taggable to tag posts and snapshots..
 gem 'acts-as-taggable-on'
 
@@ -73,6 +74,8 @@ group :development, :test do
   # shoulda to simplify test code
   gem 'shoulda'
 end
+
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
