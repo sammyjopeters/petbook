@@ -14,9 +14,9 @@ Petbook::Application.configure do
   config.paperclip_defaults = {
       :storage => :s3,
       :s3_credentials => {
-          :bucket => ENV['S3_BUCKET_NAME'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+          :bucket => ENV['petbook'],
+          :access_key_id => ENV['AKIAJ4YL3BJPVYJ6ONFQ'],
+          :secret_access_key => ENV['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']
       }
   }
 

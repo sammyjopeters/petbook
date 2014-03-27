@@ -17,10 +17,11 @@
         </div>
     <% end %>
 
-    <%= link_to 'News Feed', newsfeed_path(current_user), :class => "btn btn-default" %>
-
+    <%= link_to newsfeed_path(current_user), :class => "btn btn-default"  do %>
+        <span class="glyphicon glyphicon-home" style="font-size: 30px;"></span>
+    <% end %>
 
   <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-default btn-lg'  %>
+      <%= link_to "Login", new_user_session_path, :class => 'btn btn-warning btn-lg'  %>
   <% end %>
