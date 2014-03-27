@@ -68,6 +68,11 @@ h2{
   padding-left: 5%;
 }
 
+.list {
+  float: left;
+  displat: inline;
+}
+
 /*********** ============= Wrappers and Backgrounds ===================== ************/
 
 #transitionbg-top{
@@ -105,7 +110,6 @@ h2{
 }
 
 .content{
-  padding: 40px;
   margin-bottom: 80px;
 
 }
@@ -234,10 +238,70 @@ h2{
 .petlist {
   clear: both;
   padding: 15px;
+  text-align: center;
 }
 
 .petitem {
   float:left;
   padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.indextable{
+  background-color: #BFC5C7;
+}
+
+
+/*********** ============= Newsfeed + Social ===================== ************/
+
+.statusupdate{
+  text-align: center;
+  margin: 0 auto;
+  width: 75%;
+  clear: both;
+  border-bottom: 1px white dotted;
+  padding: 15px;
+  background-color: #1c2324;
+}
+
+.comments{
+  background-color: #c3d9ff;
+  color: #1c2324;
+  text-align: left;
+  border-radius: 2%;
+
+}
+
+.singlecomment{
+  border-bottom: 1px dotted #000080;
+}
+
+.statususer{
+  text-align: left;
+}
+
+.comments p {
+ color: #2E2F30;
+  padding: 15px;
+}
+
+.commentform{
+  margin: 0 auto;
+  text-align: center;
+  width: 85%
+}
+
+.comments small {
+  color: #2E2F30;
+  padding: 15px;
+}
+.snapshot{
+  padding: 10px;
+}
+
+.imagedetail{
+  padding: 15px;
+  margin: 0 auto;
   text-align: center;
 }

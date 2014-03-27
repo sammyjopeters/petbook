@@ -1,33 +1,27 @@
-<h1>Listing posts</h1>
+<h1>My Posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Content</th>
-      <th>Date created</th>
-      <th>Comments</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= link_to 'New Post?', newsfeed_path(current_user), :class => 'btn btn-default' %><br />
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user %></td>
-        <td><%= post.content %></td>
-        <td><%= post.date_created %></td>
-        <td><%= post.comments %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% @posts.each do |post| %>
+            <div class='statusupdate' id="pic<%= post.id %>">
+              <div class="btn-group">
+                <%= link_to 'Edit', edit_post_path(post), :class => 'btn btn-xs btn-default' %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+              </div>
+              <p>Posted on <%= post.created_at.strftime("%d %B at %H:%M") %></p>
+              <p><%= post.content %></p><br />
+              <% if post.tags.present? %>
+                  <p><strong>With: </strong>
+                    <% post.tags.each do |tag| %>
+                        <% thepet = post.user.pets.where(:name => tag.name).first %>
+                        <%= link_to pet_path(thepet.id) do %>
+                            <%= image_tag thepet.picture, width: 20, height: 20 %>
+                            <small><%= thepet.name %></small>
+                        <% end %>
+                    <% end %>
+                  </p>
+              <% end %>
 
-<br>
+            </div>
+        <% end %>
 
-<%= link_to 'New Post', new_post_path %>

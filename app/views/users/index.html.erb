@@ -1,13 +1,13 @@
 <h2>Petbook Members</h2>
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table indextable">
         <% @users.each do |user| %>
             <tr>
               <td>
                 <%= link_to (image_tag "#{user.picture}", :class => "xs_avatar"), user_profile_path(user) %>
               </td>
               <td><%= user.first_name %> from <%= user.country %></td>
-              <td><%= link_to 'View Profile', user_profile_path(user) %></td>
+              <td><%= link_to 'View Profile', user_profile_path(user), :class => "btn btn-default" %></td>
             </tr>
         <% end %>
       </table>

@@ -1,21 +1,33 @@
-<p>
-  <%= image_tag @snapshot.image.url(:medium)  %>
-</p>
-
-<h4>Comments</h4>
-<div class="comments">
-  <% @snapshot.comments.each do |comment| %>
-      <p><%= comment.content %></p>
-      <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
-      <br /><br />x
-  <% end %>
+<div class="imagedetail">
+      <%= image_tag @snapshot.image.url(:medium)  %>
+    <% if @snapshot.tags.present? %>
+        <p><strong>With: </strong>
+          <% @snapshot.tags.each do |tag| %>
+              <% thepet = @snapshot.user.pets.where(:name => tag.name).first %>
+              <%= link_to pet_path(thepet.id) do %>
+                  <%= image_tag thepet.picture, width: 20, height: 20 %>
+                  <small><%= thepet.name %></small>
+              <% end %>
+          <% end %>
+        </p>
+    <% end %>
 </div>
-<div>
+
+    <h4>Comments</h4>
+    <div class="comments">
+      <% @snapshot.comments.each do |comment| %>
+          <p><%= comment.content %></p>
+          <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
+          <br /><br />x
+      <% end %>
+    </div>
+<div class="commentform">
   <%= render partial: 'shared/postcommentform', locals: {comment: @snapshot.comments.new, post: @snapshot.id} %>
 </div>
 
+<div class="btn-group">
 <% if current_user === @snapshot.user %>
-<%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
+<%= link_to 'Edit', edit_snapshot_path(@snapshot), :class => "btn btn-default" %>
 <% end %>
-
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back, :class => "btn btn-default"  %>
+</div>

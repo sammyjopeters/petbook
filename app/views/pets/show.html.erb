@@ -20,9 +20,6 @@
     </div>
   </div>
 
-
-
-
   <div class="profiletext">
     <h1><%= @pet.name %></h1><br />
     <h4><%= @pet.species %> <%= @pet.family%></h4>
@@ -40,3 +37,38 @@
   <%= link_to 'Edit profile', edit_pet_path(@pet) %>
   <%= link_to 'Back to my pets', user_pets_path(current_user) %>
   <% end %>
+
+  <div>
+    <h3>What I've been up to lately:</h3>
+    <% @activity.each do |thing| %>
+
+        <% if thing.class.name === "Post" %>
+            <div class='statusupdate' id="<%= thing.id %>">
+              <p><%= thing.content %></p><br />
+              <% if thing.tags.present? %>
+                  <p><strong>With: </strong>
+                    <% thing.tags.each do |tag| %>
+                        <% thepet = thing.user.pets.where(:name => tag.name).first %>
+                        <%= link_to pet_path(thepet.id) do %>
+                            <%= image_tag thepet.picture, width: 20, height: 20 %>
+                            <small><%= thepet.name %></small>
+                        <% end %>
+                    <% end %>
+                  </p>
+              <% end %>
+              <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+            </div>
+
+        <% else %>
+            <!-- otherwise, give me the HTML for images. (Caveat: if I ever introduce another content type it will probably break this! -->
+            <div class='statusupdate' id="pic<%= thing.id %>">
+              <%= link_to snapshot_path(thing) do %>
+                  <%= image_tag thing.image.url(:thumb) %><br />
+              <% end %>
+              <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+            </div>
+        <% end %>
+    <% end %>
+
+
+  </div>

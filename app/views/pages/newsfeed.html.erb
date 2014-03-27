@@ -1,17 +1,35 @@
-<h2>Your Pets</h2>
-<p>Pets go here</p>
+<div class="petlist">
+<h2>My Pets</h2>
+  <% current_user.pets.each do |pet| %>
+      <div class="petitem">
+        <small><%= pet.name %></small><br />
+          <%= link_to pet_path(current_user) do %>
+              <%= image_tag("#{pet.picture}", :class => 's_avatar') %>
+          <% end %><br />
+          <%= link_to edit_pet_path(pet) do %>
+            <span class="glyphicon glyphicon-wrench" style="font-size: 25px;"></span>
+          <% end %>
+          <%= link_to pet, controller: 'pets', method: :delete, data: { confirm: 'Are you sure you want to delete?' } do %>
+            <span class="glyphicon glyphicon-trash" style="font-size: 25px; color: #F00;"></span>
+          <% end %>
+      </div>
+  <% end %>
+</div><br /><br />
 
+<div class="statusupdate">
 <%= render 'posts/form' %>
+</div>
 
-<hr>
-  <h1>Newsfeed</h1>
+  <h1 style="text-align: center">Newsfeed</h1>
 
 <% @everything.each do |thing| %>
     <!-- if what we're looking at is a post, give me the post HTML... -->
-    <h4><%= image_tag thing.user.picture, :class => "xs_avatar" %> <%= thing.user.first_name %></h4>
+
     <% if thing.class.name === "Post" %>
         <div class='statusupdate' id="<%= thing.id %>">
-
+          <div class="statususer">
+            <h4><%= image_tag thing.user.picture, :class => "xs_avatar" %> <%= thing.user.first_name %></h4>
+          </div>
           <p><%= thing.content %></p><br />
           <% if thing.tags.present? %>
               <p><strong>With: </strong>
@@ -26,25 +44,49 @@
            <% end %>
 
           <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <% if thing.comments.present? %>
           <div class="comments">
+            <h4>Comments</h4>
             <% thing.comments.each do |comment| %>
+                <div class="singlecomment">
                 <p><%= comment.content %></p>
                 <small><strong><%= link_to comment.user.first_name, user_profile_path(comment.user) %> from <%= comment.user.country %></strong> at <%= comment.created_at.strftime("%d %B at %H:%M") %></small>
-                <br /><br />x
+                <br /><br />
+                </div>
             <% end %>
           </div>
+          <% end %>
+        <div class="commentform">
+        <%= render partial: 'shared/postcommentform', locals: {comment: thing.comments.new, post: thing} %>
         </div>
-        <div>
-          <%= render partial: 'shared/postcommentform', locals: {comment: thing.comments.new, post: thing} %>
-        </div>
+    </div>
+
 
     <% else %>
         <!-- otherwise, give me the HTML for images. (Caveat: if I ever introduce another content type it will probably break this! -->
         <div class='statusupdate' id="pic<%= thing.id %>">
+          <div class="statususer">
+            <h4><%= image_tag thing.user.picture, :class => "xs_avatar" %> <%= thing.user.first_name %></h4>
+          </div>
+          <div class="snapshot">
             <%= link_to snapshot_path(thing) do %>
                 <%= image_tag thing.image.url(:thumb) %><br />
             <% end %>
+          </div>
           <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+
+          <% if thing.tags.present? %>
+              <p><strong>With: </strong>
+                <% thing.tags.each do |tag| %>
+                    <% thepet = thing.user.pets.where(:name => tag.name).first %>
+                    <%= link_to pet_path(thepet.id) do %>
+                        <%= image_tag thepet.picture, width: 20, height: 20 %>
+                        <small><%= thepet.name %></small>
+                    <% end %>
+                <% end %>
+              </p>
+          <% end %>
+
           <div class="comments">
             <% thing.comments.each do |comment| %>
                 <p><%= comment.content %></p>
@@ -52,10 +94,9 @@
                 <br /><br />
             <% end %>
           </div>
-          <div>
-            <%= render partial: 'shared/snapshotcommentform', locals: {comment: thing.comments.new, snapshot: thing.id} %>
-          </div>
-
+        </div>
+        <div class="commentform">
+          <%= render partial: 'shared/snapshotcommentform', locals: {comment: thing.comments.new, snapshot: thing.id} %>
         </div>
     <% end %>
 <% end %>

@@ -2,14 +2,20 @@
 
 <% if @user.snapshots.present? %>
     <% @user.snapshots.each do |photo| %>
-          <div class="snapshotthumb">
+          <div class="snapshot list">
            <%= link_to snapshot_path(photo) do %>
           <%= image_tag photo.image.url(:thumb) %>
-          <% end %>
-          </div><br /><br />
+          <% end %><br />
+            <div class="btn-group">
+              <%= link_to 'Replace Photo', edit_snapshot_path(snapshot), :class => 'btn btn-xs btn-default' %>
+              <%= link_to 'Delete', snapshot, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+            </div>
+          </div>
     <% end %>
       <% if @user == current_user %>
-          <%= link_to 'New Snapshot', new_snapshot_path(current_user), :class => "btn btn-default" %>
+        <!-- I KNOW, this is terrible, but I couldn't get the CSS to work so I got desperate! -->
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+         <%= link_to 'New Snapshot', new_snapshot_path(current_user), :class => "btn btn-default" %>
       <% end %>
 <% else %>
     <h3>You haven't got any photos yet.</h3>

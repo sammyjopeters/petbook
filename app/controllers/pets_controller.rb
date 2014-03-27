@@ -10,6 +10,9 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    @posts = current_user.posts.tagged_with(@pet.name)
+    @snapshots = current_user.snapshots.tagged_with(@pet.name)
+    @activity = (@posts + @snapshots).sort_by(&:created_at).reverse!
   end
 
   # GET /pets/new
