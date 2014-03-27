@@ -26,7 +26,11 @@
   <div class="profiletext">
     <h1><%= @pet.name %></h1><br />
     <h4><%= @pet.species %> <%= @pet.family%></h4>
-    <h5>I'm <%= @pet.age %> years old!</h5>
+    <% if @pet.age === 0 %>
+    <h5>I'm only a few months old!</h5>
+    <% else %>
+    <h5>I'm <%= @pet.age %> <%= "year".pluralize(@pet.age) %> old!</h5>
+    <% end %>
 
     <p><strong>A Little Bit About me...</strong><br />
     <%= @pet.bio %></p>

@@ -59,6 +59,9 @@ group :development, :test do
   # factorygirl to create complex test data
   gem 'factory_girl_rails'
 
+  # amazon web services gem - which allows me to store paperclip content on the web;
+  gem 'aws-sdk', '~> 1.5.7'
+
   # simplecov to check test coverage
   gem 'simplecov'
 
