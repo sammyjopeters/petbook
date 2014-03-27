@@ -1,14 +1,12 @@
 require 'spec_helper'
 
 describe PetsController do
+  let(:user){ FactoryGirl.create(:user) }
+  let(:valid_attributes) { {user_id: user.id} }
 
-
-
-context "if you're logged in" do
-    before(:each) do
-      @user = create(:user)
-      sign_in @user
-    end
+  before :each do
+    sign_in user
+  end
 
     describe "GET index" do
       it "assigns all pets as @pets" do
@@ -136,8 +134,6 @@ context "if you're logged in" do
         response.should redirect_to(pets_url)
       end
     end
-end
 
-  context "if you're not logged in"
 
 end

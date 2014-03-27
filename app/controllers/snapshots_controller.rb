@@ -19,8 +19,7 @@ class SnapshotsController < ApplicationController
   # GET /snapshots/1
   # GET /snapshots/1.json
   def show
-    # this allows the back button to send you back somewhere real without exploding
-    session[:last_page] = request.env['HTTP_REFERRER'] || newsfeed_path(current_user)
+
   end
 
   # GET /snapshots/new

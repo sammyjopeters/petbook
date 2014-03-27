@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :snapshot do
-    user nil
+    user
   end
 end

@@ -6,6 +6,4 @@
 <%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
 <% end %>
 
-<% if session[:last_page] %>
-<%= link_to 'Back', session[:last_page] %>
-<% end %>
+<%= link_to 'Back', :back %>

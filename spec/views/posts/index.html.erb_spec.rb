@@ -1,19 +1,11 @@
 require 'spec_helper'
 
 describe "posts/index" do
+  let(:post){ FactoryGirl.create(:post) }
+  let(:post1){ FactoryGirl.create(:post1) }
+
   before(:each) do
-    assign(:posts, [
-      stub_model(Post,
-        :user => nil,
-        :content => "MyText",
-        :comments => nil
-      ),
-      stub_model(Post,
-        :user => nil,
-        :content => "MyText",
-        :comments => nil
-      )
-    ])
+    assign(:posts, [:post, :post1])
   end
 
   it "renders a list of posts" do

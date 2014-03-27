@@ -63,7 +63,7 @@ group :development, :test do
   gem 'simplecov'
 
   # mocha for stubbing
-  gem 'mocha'
+  #gem 'mocha'
 
   # shoulda to simplify test code
   gem 'shoulda'
