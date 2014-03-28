@@ -2,7 +2,9 @@
 
 
     <div class="loginPanelLeft">
+     <%= link_to user_profile_path(current_user) do %>
     <%= image_tag("#{current_user.picture}", :class => 'xs_avatar') %>
+    <% end %>
     </div>
 
     <div class="loginPanelRight">
