@@ -57,7 +57,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
+gem 'dotenv'
 # rspec for testing
 group :development, :test do
   gem 'rspec-rails'
