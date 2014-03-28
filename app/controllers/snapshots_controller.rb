@@ -6,7 +6,7 @@ class SnapshotsController < ApplicationController
   def index
     #raise params.inspect
     @snapshots = Snapshot.all
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id] || current_user)
 
     @snapshots = @user.snapshots
     if @user == current_user

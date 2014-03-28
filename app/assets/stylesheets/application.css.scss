@@ -80,12 +80,12 @@ h2{
 /*********** ============= Wrappers and Backgrounds ===================== ************/
 
 #transitionbg-top{
-  background: url(image_path("std_bg_top.jpg"));
+  background: url(image_path("std_bg_top.png"));
   background-repeat: repeat-x;
   background-position: center top;
 }
 #transitionbg{
-  background: url(image_path("std_bg_bottom.jpg"));
+  background: url(image_path("std_bg_bottom.png"));
   background-repeat: repeat-x;
   background-position: center bottom;  /* to the bottom */
 

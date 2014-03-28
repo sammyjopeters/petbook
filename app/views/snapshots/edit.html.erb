@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @snapshot %> |
-<%= link_to 'Back', snapshots_path %>
+<div class="btn-group">
+<%= link_to 'Show', @snapshot, :class => 'btn btn-xs btn-default' %>
+<%= link_to 'Back', snapshots_path, :class => 'btn btn-xs btn-default' %>
+</div>
