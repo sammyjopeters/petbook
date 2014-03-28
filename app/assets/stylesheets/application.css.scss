@@ -60,6 +60,16 @@ h2{
   font-size: 45px;
 }
 
+footer ul {
+  list-style: none;
+}
+
+footer li{
+  display: inline;
+  float: left;
+  margin: 0px 50px;
+}
+
 /*********** ============= Positioning ===================== ************/
 .left{
   float: left;
