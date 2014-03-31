@@ -43,7 +43,19 @@
               </p>
            <% end %>
 
-          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small> |
+          <%= thing.likes.length %><span class='glyphicon glyphicon-heart'></span>
+          <% if thing.likes.where(:user_id => current_user.id).exists? %>
+          <%= form_tag unlike_post_path(thing) do %>
+              <%= hidden_field_tag :post_id, thing.id %>
+              <%= submit_tag "Unlike", :class => 'btn btn-default btn-xs' %>
+          <% end %>
+              <% else %>
+              <%= form_tag addlike_post_path(thing) do %>
+                  <%= hidden_field_tag :post_id, thing.id %>
+                  <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+              <% end %>
+          <% end %>
           <% if thing.comments.present? %>
           <div class="comments">
             <h4>Comments</h4>
@@ -86,7 +98,19 @@
             <% end %>
           </div>
 
-          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small>
+          <small><%= thing.created_at.strftime("%d %B at %H:%M") %></small> |
+          <%= thing.likes.length %><span class='glyphicon glyphicon-heart'></span>
+          <% if thing.likes.where(:user_id => current_user.id).exists? %>
+              <%= form_tag unlike_snapshot_path(thing) do %>
+                  <%= hidden_field_tag :snapshot_id, thing.id %>
+                  <%= submit_tag "Unlike", :class => 'btn btn-default btn-xs' %>
+              <% end %>
+          <% else %>
+              <%= form_tag addlike_snapshot_path(thing) do %>
+                  <%= hidden_field_tag :snapshot_id, thing.id %>
+                  <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+              <% end %>
+          <% end %>
           <% if thing.comments.present? %>
               <div class="comments">
                 <h4>Comments</h4>

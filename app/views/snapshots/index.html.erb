@@ -6,6 +6,18 @@
            <%= link_to snapshot_path(photo) do %>
           <%= image_tag photo.image.url(:thumb) %>
           <% end %><br />
+            <%= photo.likes.length %><span class='glyphicon glyphicon-heart'></span>
+            <% if photo.likes.where(:user_id => current_user.id).exists? %>
+                <%= form_tag unlike_snapshot_path(photo) do %>
+                    <%= hidden_field_tag :snapshot_id, photo.id %>
+                    <%= submit_tag "Unlike", :class => 'btn btn-default btn-xs' %>
+                <% end %>
+            <% else %>
+                <%= form_tag addlike_snapshot_path(photo) do %>
+                    <%= hidden_field_tag :snapshot_id, photo.id %>
+                    <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+                <% end %>
+            <% end %><br />
             <div class="btn-group">
               <%= link_to 'Replace Photo', edit_snapshot_path(photo), :class => 'btn btn-xs btn-default' %>
               <%= link_to 'Delete', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>

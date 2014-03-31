@@ -8,7 +8,19 @@
 <p>
   <strong>Content:</strong>
   <%= @post.content %>
-</p>
+</p><br />
+<%= thing.likes.length %><span class='glyphicon glyphicon-heart'></span>
+<% if @post.likes.where(:user_id => current_user.id).exists? %>
+    <%= form_tag unlike_post_path(@post) do %>
+        <%= hidden_field_tag :post_id, @post.id %>
+        <%= submit_tag "Unlike", :class => 'btn btn-default btn-xs' %>
+    <% end %>
+<% else %>
+    <%= form_tag addlike_post_path(@post) do %>
+        <%= hidden_field_tag :post_id, @post.id %>
+        <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+    <% end %>
+<% end %>
 
 
 <p>

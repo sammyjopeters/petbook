@@ -74,12 +74,16 @@ class SnapshotsController < ApplicationController
 
 
   def addlike
-    snapshot = Snapshot.find(params[:id])
-    @like = snapshot.likes.create(like_params)
+    thephoto = Snapshot.find(params[:snapshot_id])
+    @like = thephoto.likes.create(user_id: current_user.id, post_id: params[:snapshot_id])
     redirect_to :back
+  end
 
-    #post.increment!(:likes, by = 1)
-    #redirect_to newsfeed_path(current_user, :anchor => snapshot.id)
+  def unlike
+    thephoto = Snapshot.find(params[:snapshot_id])
+    @like = thephoto.likes.find_by(user_id: current_user.id)
+    @like.destroy
+    redirect_to :back
   end
 
   def tag_list

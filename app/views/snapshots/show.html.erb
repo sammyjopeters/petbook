@@ -1,5 +1,17 @@
 <div class="imagedetail">
-      <%= image_tag @snapshot.image.url(:medium)  %>
+      <%= image_tag @snapshot.image.url(:medium)  %><br /><br />
+  <%= @snapshot.likes.length %><span class='glyphicon glyphicon-heart'></span>
+  <% if @snapshot.likes.where(:user_id => current_user.id).exists? %>
+      <%= form_tag unlike_snapshot_path(@snapshot) do %>
+          <%= hidden_field_tag :snapshot_id, @snapshot.id %>
+          <%= submit_tag "Unlike", :class => 'btn btn-default btn-xs' %>
+      <% end %>
+  <% else %>
+      <%= form_tag addlike_snapshot_path(@snapshot) do %>
+          <%= hidden_field_tag :snapshot_id, @snapshot.id %>
+          <%= submit_tag "Like!", :class => 'btn btn-default btn-xs' %>
+      <% end %><br />
+    <% end %>
     <% if @snapshot.tags.present? %>
         <p><strong>With: </strong>
           <% @snapshot.tags.each do |tag| %>

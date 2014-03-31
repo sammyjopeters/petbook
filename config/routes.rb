@@ -11,6 +11,7 @@ Petbook::Application.routes.draw do
   resources :posts do
     member do
       post :addlike
+      post :unlike
     end
   end
 

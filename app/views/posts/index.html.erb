@@ -8,8 +8,8 @@
                 <%= link_to 'Edit', edit_post_path(post), :class => 'btn btn-xs btn-default' %>
                 <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
               </div>
-              <p>Posted on <%= post.created_at.strftime("%d %B at %H:%M") %></p>
-              <p><%= post.content %></p><br />
+              <p>Posted on <%= post.created_at.strftime("%d %B at %H:%M") %></p> <%= post.likes.length %><span class='glyphicon glyphicon-heart'></span>
+              <p><em><%= post.content %></em></p>
               <% if post.tags.present? %>
                   <p><strong>With: </strong>
                     <% post.tags.each do |tag| %>

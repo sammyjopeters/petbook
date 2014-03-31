@@ -28,9 +28,9 @@ class PagesController < ApplicationController
       # if you aren't following anybody, just return your stuff.
       @everything = show_my_stuff(@user)
       render alert: "You're not following anybody at the moment!"
-      puts @everything.inspect
     else
       @everything = show_me_all_things(followlist)
+      puts "This is what I'm putting in your newsfeed: #{@everything}"
     end
 
   end
@@ -63,6 +63,7 @@ class PagesController < ApplicationController
       if user.posts.present?
         user_posts = user.posts.order(created_at: :desc).limit(10)
         @posts += user_posts
+        puts "The posts are these #{@posts}"
       else
       end
 
@@ -72,9 +73,11 @@ class PagesController < ApplicationController
         @snapshots += user_photos
       else
       end
-      @everything = (@posts + @snapshots).sort_by(&:created_at).reverse!
+
+
     end
-    @everything
+    result = (@posts + @snapshots).sort_by(&:created_at).reverse!
+    result
 
   end #end def show me all things
 

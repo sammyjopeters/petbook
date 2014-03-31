@@ -65,19 +65,18 @@ class PostsController < ApplicationController
     end
   end
 
-  # like functionality not working :-(
-  #def addlike
-  #  post = Post.find(params[:id])
-  #  @like = post.likes.create(user_id: params[:user_id], post_id: post.id)
-  #  redirect_to :back
-  #end
-  #
-  #def unlike
-  #  post = Post.find(params[:id])
-  #  @like = post.likes.find(params[:user_id])
-  #  @like.destroy
-  #  redirect_to :back
-  #end
+  def addlike
+    thepost = Post.find(params[:post_id])
+    @like = thepost.likes.create(user_id: current_user.id, post_id: params[:post_id])
+    redirect_to :back
+  end
+
+  def unlike
+    thepost = Post.find(params[:post_id])
+    @like = thepost.likes.find_by(user_id: current_user.id)
+    @like.destroy
+    redirect_to :back
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
